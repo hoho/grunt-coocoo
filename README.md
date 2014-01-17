@@ -1,0 +1,4 @@
+grunt-coocoo
+============
+
+Compile CooCoo
