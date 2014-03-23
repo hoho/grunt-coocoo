@@ -1,36 +1,36 @@
 {
-  "name": "grunt-coocoo",
-  "version": "0.0.27",
-  "description": "Compile CooCoo",
-  "directories": {
-    "test": "test",
-    "tasks": "tasks"
-  },
-  "scripts": {
-    "test": "grunt"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/hoho/grunt-coocoo.git"
-  },
-  "keywords": [
-    "gruntplugin",
-    "coocoo",
-    "MVC",
-    "DSL",
-    "compile"
-  ],
-  "author": "Marat Abdullin <dakota@brokenpipe.ru>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/hoho/grunt-coocoo/issues"
-  },
-  "dependencies": {
-    "coocoo": "~0.0.27"
-  },
-  "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.6.4",
-    "grunt-contrib-clean": "~0.4.0"
-  }
+    "name": "grunt-coocoo",
+    "version": "0.0.28",
+    "description": "Compile CooCoo",
+    "directories": {
+        "test": "test",
+        "tasks": "tasks"
+    },
+    "scripts": {
+        "test": "grunt"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/hoho/grunt-coocoo.git"
+    },
+    "keywords": [
+        "gruntplugin",
+        "coocoo",
+        "MVC",
+        "DSL",
+        "compile"
+    ],
+    "author": "Marat Abdullin <dakota@brokenpipe.ru>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/hoho/grunt-coocoo/issues"
+    },
+    "dependencies": {
+        "coocoo": "~0.0.28"
+    },
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-contrib-jshint": "~0.6.4",
+        "grunt-contrib-clean": "~0.4.0"
+    }
 }
