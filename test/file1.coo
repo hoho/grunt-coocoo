@@ -1,15 +1,4 @@
-APPLICATION
-    CONSTRUCT parentNode
-        SET p
-            +VIEW Page CREATE
-
-        DOM $parentNode APPEND
-            +VIEW Page $p RENDER
-
-
-TEMPLATE Page
-    ORIGIN "conkitty:page"
-
-
-TEMPLATE Item title
-    ORIGIN "conkitty:item"
+application
+    construct $parentNode
+        ^$parentNode
+            *view Page render

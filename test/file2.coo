@@ -1,101 +1,91 @@
-MODEL Item
-    PROPERTY title<String>
+model Item
+    @title<String>
 
-    CONSTRUCT title
-        MODEL SET title $title
-
-
-COLLECTION List
-    MODEL Item
+    construct $title
+        set @title $title
 
 
-ROUTE Index
-    PATHNAME "^/(test)$"
-    SEARCH val
-        +JS
+collection List
+    model Item
+
+
+route Index
+    pathname "^/(test)$"
+    =search $val
+        +js
             return {a: 123, b: 234, c: val}
 
 
-ROUTE NotFound
-    NOMATCH
+route NotFound
+    nomatch
 
 
-VIEW Item
-    PROPERTY model<MODEL Item>
-    PROPERTY textNode<JS val (val instanceof Node)>
+view Item
+    @model<model Item>
+    @textNode<js $val (val instanceof Node)>
 
-    CONSTRUCT m
-        VIEW SET model $m
+    construct $m
+        set @model $m
 
-        MODEL Item $m
-            CHANGE "title" val
-                DOM @textNode TEXT $val
+        model Item $m
+            on change "title" $val
+                dom @textNode text set $val
 
-            DESTROY
-                VIEW DESTROY
+            on destroy
+                destroy
 
-    RENDER
-        ROUTE NotFound
-            ON same href p1 p2
-                JS
+    ^render
+        routes
+            route NotFound $same $href $p1 $p2
+                js
                     alert(123);
-            OFF same href p4 p5
-                JS
-                    alert('abc');
 
-        ROUTE Index
-            ON href p1 p2
-                JS
-                    alert(123);
-            OFF href p4 p5
-                JS
-                    alert('abc');
+            route Index $href $p1 $p2
+                js
+                    alert(234);
 
-        +TEMPLATE Item APPLY
-            PARAM title
-                +MODEL Item @model GET title
+            otherwise
+                js
+                    alert(345);
 
-            ELEMENT "text" node
-                VIEW SET textNode $node
+        *template "conkitty:item" apply
+            =param
+                +model Item @model get @title
 
-            ELEMENT "remove" node
-                DOM $node
-                    CLICK
-                        MODEL Item @model DESTROY
+            "text" $node
+                set @textNode $node
+
+            "remove" $node
+                dom $node
+                    on "click"
+                        model Item @model destroy
 
 
-VIEW Page
-    PROPERTY container<Node>
-    PROPERTY input<Node>
-    PROPERTY list<COLLECTION List>
+view Page
+    @container<dom>
+    @input<dom>
+    @list<collection List>
 
-    CONSTRUCT
-        VIEW SET list
-            +COLLECTION List CREATE
-                ADD m
-                    VIEW CALL addItem $m
+    construct
+        =set @list
+            +collection List create
+                on add $m
+                    call addItem $m
 
-    RENDER
-        +TEMPLATE Page APPLY
-            ELEMENT "container" node
-                VIEW SET container $node
+    ^render
+        *template "conkitty:page" apply
+            "container" $node
+                set @container $node
 
-            ELEMENT "input" node
-                VIEW SET input $node
+            "input" $node
+                set @input $node
 
-            ELEMENT "add" node
-                DOM $node
-                    CLICK
-                        COLLECTION List @list ADD
-                            +DOM @input VALUE GET
+            "add" $node
+                dom $node
+                    on "click"
+                        collection List @list add [+dom @input value get]
+                        dom @input value set ""
 
-                        DOM @input VALUE SET ""
-
-    METHOD addItem m
-        DOM @container APPEND
-            SET tmp
-                +VIEW Item CREATE $m
-
-            +VIEW Item $tmp RENDER
-
-        //+VIEW Item [+VIEW Item CREATE $m] RENDER
+    addItem $m
+        ^@container
+            *view Item render $m
