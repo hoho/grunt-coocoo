@@ -1,6 +1,6 @@
 {
     "name": "grunt-coocoo",
-    "version": "0.0.38",
+    "version": "0.0.39",
     "description": "Compile CooCoo",
     "directories": {
         "test": "test",
@@ -26,10 +26,10 @@
         "url": "https://github.com/hoho/grunt-coocoo/issues"
     },
     "dependencies": {
-        "coocoo": "0.0.38"
+        "coocoo": "0.0.39"
     },
     "devDependencies": {
-        "grunt": "~0.4.1",
+        "grunt": "~0.4.4",
         "grunt-contrib-jshint": "~0.6.4",
         "grunt-contrib-clean": "~0.4.0"
     }
